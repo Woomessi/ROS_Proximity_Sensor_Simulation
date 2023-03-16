@@ -1,0 +1,15 @@
+<launch>
+
+    <!-- 设置参数 -->
+    <!-- <param name="robot_description" textfile="$(find robot_sensor)/urdf/model_sensor.urdf" /> -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find robot_sensor)/urdf/model_sensor1.xacro" />
+
+    <rosparam file="$(find robot_sensor)/config/gazebo_ros_control_params.yaml" command="load"/>
+
+    <!-- 启动 gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model my_robot -param robot_description"  />
+
+</launch>
